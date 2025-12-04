@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reagant Timeline</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <style>
+        body {
+            animation: fadeIn 1.5s ease-in-out;
+            font-family: 'Garamond', serif;
+            background: linear-gradient(135deg, #1e1e1e, #3d3d3d);
+            color: #f5f5f5;
+            overflow-x: hidden;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes gradientMovement {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        header {
+            background: linear-gradient(135deg, #6A1B9A, #FFD700);
+            background-size: 400% 400%;
+            animation: gradientMovement 10s ease infinite;
+            padding: 20px;
+            text-align: center;
+            color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        .timeline-container {
+            display: flex;
+            overflow-x: auto;
+            white-space: nowrap;
+            padding: 20px;
+            scroll-behavior: smooth;
+        }
+
+        .timeline-card {
+            background: linear-gradient(135deg, #6A1B9A, #FFD700);
+            background-size: 400% 400%;
+            animation: gradientMovement 10s ease infinite;
+            border-radius: 10px;
+            margin: 0 15px;
+            padding: 20px;
+            text-align: center;
+            color: white;
+            flex: 0 0 300px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s, background-color 0.5s;
+            cursor: pointer;
+        }
+
+        .timeline-card h3 {
+            color: #1e1e1e;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+        }
+
+        .timeline-card:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .event-detail {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 40px;
+            border-radius: 10px;
+            max-width: 80%;
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .event-detail h3 {
+            margin-bottom: 20px;
+        }
+
+        .event-detail p {
+            margin-bottom: 20px;
+        }
+
+        .close-btn {
+            background-color: #FFD700;
+            border: none;
+            color: black;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        footer {
+            background-color: #1e1e1e;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Timeline: My Story</h1>
+        <p>Explore My Story here.</p>
+    </header>
+
+    <div class="timeline-container">
+        <div class="timeline-card" id="event1" onclick="showDetail('2019/2020 at SMP 3', 'Started the journey of academic exploration at SMP 3, setting the foundation for future learning.')">
+            <h3>2019: at SMP 3</h3>
+            <p>Embarking on the first academic chapter at SMP 3.</p>
+        </div>
+        <div class="timeline-card" id="event2" onclick="showDetail('Covid-19 and the First Lockdown', 'In 2020, the world changed with the emergence of COVID-19, leading to the first global lockdowns.')">
+            <h3>2019/2020 : Covid-19 and the First Lockdown</h3>
+            <p>The world paused as the first lockdown took effect.</p>
+        </div>
+        <div class="timeline-card" id="event3" onclick="showDetail('The Transition to Online Schooling', 'In 2020, the shift to online learning began, reshaping education for all.')">
+            <h3>2020: The Transition to Online Schooling</h3>
+            <p>Adapting to new ways of learning through online platforms.</p>
+        </div>
+        <div class="timeline-card" id="event4" onclick="showDetail('Becoming a Senior High School Student', 'The journey continued as I transitioned to senior high school in 2020/2021.')">
+            <h3>2020: Becoming a Senior High School Student</h3>
+            <p>The start of a new chapter as a senior high schooler.</p>
+        </div>
+        <div class="timeline-card" id="event5" onclick="showDetail('The End of COVID Restrictions and Offline Learning', 'By 2022, COVID restrictions eased, and education returned to its offline form.')">
+            <h3>2022: The End of COVID Restrictions and Offline Learning</h3>
+            <p>Returning to physical classrooms and a new learning environment.</p>
+        </div>
+        <div class="timeline-card" id="event6" onclick="showDetail('Graduation from Senior High School', 'Graduated in 2023, ready for the next chapter in higher education.')">
+            <h3>2023: Graduation from Senior High School</h3>
+            <p>Celebrating the successful end of high school life.</p>
+        </div>
+        <div class="timeline-card" id="event7" onclick="showDetail('Becoming a UPH Information Systems Freshman', 'Joined the UPH Information Systems class as part of the 2023 batch.')">
+            <h3>2023: Becoming a UPH Information Systems Freshman</h3>
+            <p>A new journey as a university freshman at UPH.</p>
+        </div>
+        <div class="timeline-card" id="event8" onclick="showDetail('Becoming a Mentor for the Class of 2024', 'Embarking on a journey of guidance and mentorship for new students in 2024.')">
+            <h3>2024: Becoming a Mentor for the Class of 2024</h3>
+            <p>Taking the first step toward mentorship and leadership.</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Reagant Portfolio Timeline. All rights reserved.</p>
+    </footer>
+
+    <div id="eventDetailPopup" class="event-detail">
+        <h3 id="eventTitle"></h3>
+        <p id="eventDescription"></p>
+        <button class="close-btn" onclick="closeDetail()">Close</button>
+    </div>
+
+    <script>
+        function showDetail(title, description) {
+            document.getElementById('eventTitle').innerText = title;
+            document.getElementById('eventDescription').innerText = description;
+            document.getElementById('eventDetailPopup').style.display = 'block';
+
+            const clickedEvent = event.currentTarget;
+            clickedEvent.style.transform = 'scale(1.1)';
+            clickedEvent.style.transition = 'transform 0.3s ease';
+        }
+
+        function closeDetail() {
+            document.getElementById('eventDetailPopup').style.display = 'none';
+            const events = document.querySelectorAll('.timeline-card');
+            events.forEach(function(event) {
+                event.style.transform = 'scale(1)';
+            });
+        }
+
+        window.onclick = function(event) {
+            if (event.target === document.getElementById('eventDetailPopup')) {
+                closeDetail();
+            }
+        }
+    </script>
+</body>
+</html>
